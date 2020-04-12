@@ -64,6 +64,8 @@ void loop() {
     //fifteen
     //wait fifteen minutes (30 secondes for presentation) 
     Serial.println("Case 1 wait 15 minutes");
+    digitalWrite(PinGPS, LOW);
+    digitalWrite(PinLoRa, LOW);
     delay(15000);
     switcher = 2;
     break;
@@ -101,6 +103,7 @@ void loop() {
     // send pos
     //now we have the position we send it via LoRa
     Serial.println("Case 4 Send position via LorA");
+    digitalWrite(PinLoRa, high);
     //send via lora id, lat, long, alt
     ssb.print(Lat);
     delay(20);
