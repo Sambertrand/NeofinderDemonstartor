@@ -34,7 +34,7 @@ void setup()
 {
   Serial.begin(9600);
   
-  //ssb.begin(LORABaud);
+  ssb.begin(LORABaud);
   ss.begin(GPSBaud);
   pinMode(PinGPS, OUTPUT);
   pinMode(PinLoRa, OUTPUT);
@@ -42,20 +42,20 @@ void setup()
   pinMode(NOkButton, INPUT);
   switcher = 1;
   // set up the LoRa communication
-  //ssb.print("AT+RESET\r\n");
-  //delay(20);
-  //ssb.print("AT+IPR=9600\r\n");
-  //delay(20);
-  //ssb.print("AT+ADDRESS=1\r\n");
-  //delay(20);
-  //ssb.print("AT+NETWORKID=5\r\n");
-  //delay(20);
-  //ssb.print("AT+MODE=1\r\n");
-  //delay(20);
-  //ssb.print("AT+BAND=868500000\r\n");
-  //delay(20);
-  //ssb.print("AT+PARAMETER=10,7,1,7\r\n");
-  //delay(20);
+  ssb.print("AT+RESET\r\n");
+  delay(20);
+  ssb.print("AT+IPR=9600\r\n");
+  delay(20);
+  ssb.print("AT+ADDRESS=1\r\n");
+  delay(20);
+  ssb.print("AT+NETWORKID=5\r\n");
+  delay(20);
+  ssb.print("AT+MODE=1\r\n");
+  delay(20);
+  ssb.print("AT+BAND=868500000\r\n");
+  delay(20);
+  ssb.print("AT+PARAMETER=10,7,1,7\r\n");
+  delay(20);
 }
 
 void loop() {
@@ -73,7 +73,7 @@ void loop() {
     //ask Ublox chip to get a position
     Serial.println("Case 2 Ask Ublox for a position");
     //3.3V to pin turn on ublox
-    //digitalWrite(PinGPS, HIGH);
+    digitalWrite(PinGPS, HIGH);
     switcher = 3;
     break;
     
@@ -81,13 +81,6 @@ void loop() {
     //Wait pos
     // wiat for the chip to give a position
     Serial.println("Case 3 wait for Ublox to get a position"); 
-    Serial.print("Time     : ");
-    char t[32];
-    sprintf(t, "%02d:%02d:%02d ", gps.time.hour(), gps.time.minute(), gps.time.second());
-    Serial.println(t);
-    Serial.print("SatNum   : ");
-    Serial.println(gps.satellites.value());
-    Serial.println("---------------------");
     if (gps.location.lng() > 0)
     {
       Lon=gps.location.lng(), 6;
@@ -108,11 +101,11 @@ void loop() {
     // send pos
     //now we have the position we send it via LoRa
     Serial.println("Case 4 Send position via LorA");
-     //send via lora id, lat, long, alt
-    //ssb.print(Lat);
-    //delay(20);
-    //ssb.print(Lon);
-    //delay(20);
+    //send via lora id, lat, long, alt
+    ssb.print(Lat);
+    delay(20);
+    ssb.print(Lon);
+    delay(20);
     Serial.println("message sent");
     switcher = 5;
     break;
