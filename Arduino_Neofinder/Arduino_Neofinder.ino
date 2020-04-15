@@ -104,10 +104,13 @@ void loop() {
     Serial.println("Case 4 Send position via LorA");
     //send via lora id, lat, long, alt
     ssb.print(Lat);
+    ssb.print(";");
     delay(20);
     ssb.print(Lon);
+    ssb.print(";");
     delay(20);
     ssb.print(Alt);
+    ssb.print(";");
     delay(20);
     Serial.println("message sent");
     switcher = 5;
