@@ -107,6 +107,8 @@ void loop() {
     delay(20);
     ssb.print(Lon);
     delay(20);
+    ssb.print(Alt);
+    delay(20);
     Serial.println("message sent");
     switcher = 5;
     break;
