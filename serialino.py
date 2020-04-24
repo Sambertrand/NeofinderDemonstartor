@@ -43,8 +43,8 @@ if __name__ == "__main__":
     print(topost)
     
     token={
-        'name': 'iot',
-        'password' : 'MaSaHo@ec4m.be'
+        'name': '******$,
+        'password' : '***********'
     }
     r = requests.post(iptoken, json=token)
     authtoken = r.json()["access_token"]
